@@ -1,0 +1,9 @@
+kafka-python
+pandas
+dash
+dash-core-components
+dash-html-components
+dash-bootstrap-components
+plotly
+sqlalchemy
+pydruid

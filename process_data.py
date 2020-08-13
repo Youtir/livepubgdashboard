@@ -21,8 +21,16 @@ time.sleep(5)
 
 producer = KafkaProducer(bootstrap_servers=BOOTSTRAP_SERVER, value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
-for i in split_data['LogPlayerPosition']:
-    producer.send('pubg', i)
-    time.sleep(0.1)
+# for i in split_data['LogPlayerPosition']:
+#     producer.send('pubg', i)
+#     time.sleep(0.1)
+
+for i in data:
+    if i['_T'] == 'LogPlayerPosition':
+        producer.send('pubg', i)
+        time.sleep(0.05)
+    elif i['_T'] == 'LogPlayerKill':
+        producer.send('pubg-kill-log', i)
+        time.sleep(0.05)
 
 producer.close()
